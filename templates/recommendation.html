@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendations</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        p {
+            color: #666;
+            line-height: 1.5;
+        }
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 20px auto;
+            width: 80%;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        a {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 120px;
+            margin: 20px auto;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Recommendations for "{{ movie_title }}"</h1>
+    <p>The similarity score indicates how similar the recommended movies are to the selected movie, based on user ratings. The score ranges from 0 to 1, where 0 indicates no similarity and 1 indicates perfect similarity.</p>
+    <p>These recommendations are generated based on the ratings given by users. If a large number of users who liked "{{ movie_title }}" also liked the recommended movies, those movies will have a high similarity score. This means that the recommended movies share similar appeal to the same audience.</p>
+    
+    <h2>Example:</h2>
+    <table>
+        <tr>
+            <th>User</th>
+            <th>Movie A</th>
+            <th>Movie B</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>5</td>
+            <td>4</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>4</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>1</td>
+            <td>2</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>5</td>
+            <td>5</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>3</td>
+            <td>3</td>
+        </tr>
+    </table>
+    <p>The similarity score between Movie A and Movie B would be high because their ratings are similar across multiple users. This implies that users who liked Movie A are also likely to like Movie B.</p>
+    
+    <ul>
+        {% for recommended_movie, score in recommended_movies %}
+            <li>{{ recommended_movie }} (Similarity Score: {{ score }})</li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to Home</a>
+</body>
+</html>
