@@ -10,98 +10,39 @@
             margin: 0;
             padding: 0;
             background-color: #f4f4f4;
-            color: #333;
-            line-height: 1.6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
         }
         h1 {
-            text-align: center;
-            margin-top: 50px;
-        }
-        p {
-            margin: 20px 0;
-        }
-        table {
-            width: 80%;
-            margin: 0 auto;
-            border-collapse: collapse;
-            border: 1px solid #ccc;
-        }
-        th, td {
-            border: 1px solid #ccc;
-            padding: 8px;
-            text-align: center;
-        }
-        th {
-            background-color: #f2f2f2;
+            color: #333;
         }
         form {
-            text-align: center;
             margin-top: 20px;
         }
-        label {
-            font-weight: bold;
-        }
-        select, input[type="submit"] {
-            padding: 8px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-        }
-        input[type="submit"] {
-            background-color: #007bff;
-            color: #fff;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        input[type="submit"]:hover {
-            background-color: #0056b3;
+        select, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 16px;
         }
     </style>
 </head>
 <body>
-    <h1>Welcome to the Movie Recommendation System</h1>
-    <p>Select a movie from the dropdown list to get recommendations based on user ratings.</p>
-    <p>The similarity score indicates how similar two movies are based on user ratings. It ranges from 0 to 1, where 0 indicates no similarity and 1 indicates perfect similarity.</p>
-    <p>When users rate movies, they express their preferences. By comparing these ratings, we can find movies that share similar patterns of user preference. For example, if many users rate both "Movie A" and "Movie B" highly, these movies are considered similar and "Movie B" can be recommended to users who liked "Movie A".</p>
+    <div class="container">
+        <h1>Movie Recommendation System</h1>
+        <form action="/recommendation" method="post">
+            {{ form.hidden_tag() }}
+            {{ form.movie.label }}<br>
+            {{ form.movie }}<br>
+            <button type="submit">Get Recommendations</button>
+        </form>
+        <br>
+        <a href="/examples">View Example</a> 
+    </div>
     
-    <h2>Example:</h2>
-    <table>
-        <tr>
-            <th>User</th>
-            <th>Movie A</th>
-            <th>Movie B</th>
-        </tr>
-        <tr>
-            <td>1</td>
-            <td>5</td>
-            <td>4</td>
-        </tr>
-        <tr>
-            <td>2</td>
-            <td>4</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <td>3</td>
-            <td>1</td>
-            <td>2</td>
-        </tr>
-        <tr>
-            <td>4</td>
-            <td>5</td>
-            <td>5</td>
-        </tr>
-        <tr>
-            <td>5</td>
-            <td>3</td>
-            <td>3</td>
-        </tr>
-    </table>
-    <p>The similarity score between Movie A and Movie B would be high because their ratings are similar across multiple users. This implies that users who liked Movie A are also likely to like Movie B.</p>
-    
-    <form action="/recommendation" method="post">
-        {{ form.csrf_token }}
-        {{ form.movie.label }} {{ form.movie }}
-        <input type="submit" value="Get Recommendations">
-    </form>
 </body>
 </html>

@@ -49,16 +49,24 @@ def recommendation():
     if movie_id in cosine_sim_df:
         similar_movies = cosine_sim_df[movie_id].dropna()
         print(f"Found {similar_movies.shape[0]} similar movies")
-        similar_movies = similar_movies.sort_values(ascending=False).head(5)
+        similar_movies = similar_movies.sort_values(ascending=False).head(6)  # Get top 6 for demonstration
         
+        # Drop the first entry as it will be the movie itself with similarity score 1.0
+        similar_movies = similar_movies.iloc[1:]
+
         recommended_movie_ids = similar_movies.index
-        recommended_movie_titles = movie_data[movie_data['movieId'].isin(recommended_movie_ids)][['movieId', 'title']].values.tolist()
-        recommended_movies = [(title, similar_movies[movie_id]) for movie_id, title in recommended_movie_titles]
+        recommended_movie_titles = movie_data[movie_data['movieId'].isin(recommended_movie_ids)][['movieId', 'title']].set_index('movieId').loc[recommended_movie_ids]
+        recommended_movies = [(title, similar_movies[movie_id]) for movie_id, title in recommended_movie_titles['title'].items()]
     else:
         print("No similar movies found")
         recommended_movies = []
 
-    return render_template('recommendation.html', movie_title=movie_data.loc[movie_data['movieId'] == movie_id, 'title'].values[0], recommended_movies=recommended_movies)
+    movie_title = movie_data.loc[movie_data['movieId'] == movie_id, 'title'].values[0]
+    return render_template('recommendation.html', movie_title=movie_title, recommended_movies=recommended_movies)
+
+@app.route('/examples')
+def examples():
+    return render_template('examples.html')
 
 if __name__ == '__main__':
     app.run(debug=True)

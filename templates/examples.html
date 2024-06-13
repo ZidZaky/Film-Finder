@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            text-align: center;
+        }
+        h1 {
+            color: #333;
+        }
+        .example {
+            text-align: left;
+            margin-top: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            border: 1px solid #ccc;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .back-link {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Recommendation Example</h1>
+        <div class="example">
+            <h2>Example:</h2>
+            <table>
+                <tr>
+                    <th>User</th>
+                    <th>Toy Story (1995)</th>
+                    <th>Grumpier Old Men (1995)</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>4.0</td>
+                    <td>4.0</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>4.0</td>
+                    <td>5.0</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>5.0</td>
+                    <td>5.0</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>3.0</td>
+                    <td>2.0</td>
+                </tr>
+            </table>
+            <p>The similarity score between "Toy Story (1995)" and "Grumpier Old Men (1995)" would be moderate to high because their ratings are similar across multiple users. This implies that users who liked "Toy Story (1995)" are also likely to like "Grumpier Old Men (1995)".</p>
+        </div>
+        <br>
+        <a href="/">Back to Recommendations</a> <!-- Button to navigate back to recommendation page -->
+    </div>
+    
+</body>
+</html>
